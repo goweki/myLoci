@@ -5,6 +5,9 @@ export default function robots() {
       allow: "/",
       disallow: "/admin/",
     },
-    sitemap: "https://acme.com/sitemap.xml",
+    sitemap:
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000/sitemap.xml"
+        : `${process.env.CONICAL_URL}/sitemap.xml`,
   };
 }
