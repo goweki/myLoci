@@ -4,7 +4,7 @@ export default function Footer({}) {
   //Render
   return (
     <footer className="surface w-full">
-      <div className="mx-auto max-w-screen-lg p-4">
+      <div className="mx-auto max-w-screen-lg px-4 pb-4">
         <hr className="mb-4 border-font-inactive sm:mx-auto lg:mb-8" />
         <div className="sm:flex sm:items-center sm:justify-between mx-4">
           <span className="text-sm sm:text-center">

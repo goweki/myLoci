@@ -11,7 +11,7 @@ export default function NavbarTop() {
   const [openMenu, setOpenMenu] = useState(""); //mobile-menu,notifications,profile
   //Render
   return (
-    <nav className="surface backdrop-blur-xl sticky top-0 w-full border-b pb-6 pt-8 lg:w-auto lg:p-4">
+    <nav className="surface backdrop-blur-xl sticky top-0 w-full border-b p-2 lg:p-4 z-24">
       {/* border-b border-backg-raised bg-gradient-to-b from-backg-surface to-backg-surface/50 pb-6 pt-8 backdrop-blur-lg dark:border-backg-dark-raised dark:from-backg-dark-surface dark:to-backg-dark-surface/50 lg:static lg:w-auto lg:rounded-lg lg:border lg:bg-backg-surface lg:p-4 lg:dark:bg-backg-dark-surface/30 */}
       <div className="mx-auto max-w-screen-lg px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
@@ -108,14 +108,12 @@ export default function NavbarTop() {
               noPadding
               noText
             />
-            <ButtonUnbound icon={SVGcog} label="Settings" noPadding noText />
-
             {/* Profile dropdown */}
             <div className="relative ml-3">
               <div>
                 <button
                   type="button"
-                  className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  className="group relative flex text-sm focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-dark rounded-md text-md hover:text-primary"
                   id="user-menu-button"
                   aria-expanded="false"
                   aria-haspopup="true"
@@ -124,12 +122,9 @@ export default function NavbarTop() {
                     else setOpenMenu("");
                   }}
                 >
-                  <span className="absolute -inset-1.5"></span>
                   <span className="sr-only">Open user menu</span>
-                  <img
-                    className="h-8 w-8 rounded-full"
-                    src="https://i.postimg.cc/q74Q1Fy0/goweki-headshot-icon.jpg"
-                    alt="dp"
+                  <SVGcog
+                    className={`h-6 w-6 fill-none stroke-1 transition group-hover:fill-primary group-hover:stroke-primary stroke-font dark:stroke-font-dark`}
                   />
                 </button>
               </div>
@@ -145,16 +140,15 @@ export default function NavbarTop() {
 
               {openMenu === "settings" && (
                 <div
-                  className="absolute surface right-0 z-10 mt-2 w-48 origin-top-right py-1 bg-primary-dark"
+                  className="absolute surface right-0 z-10 mt-2 w-36 origin-top-right py-1 bg-primary-dark"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="user-menu-button"
                   tabIndex="-1"
                 >
-                  {/* Active: "bg-gray-100", Not Active: ""  */}
                   <Link
                     href="#"
-                    className="block px-4 py-2 text-sm"
+                    className="block py-2 text-sm"
                     role="menuitem"
                     tabIndex="-1"
                     id="user-menu-item-0"
@@ -163,7 +157,7 @@ export default function NavbarTop() {
                   </Link>
                   <Link
                     href="#"
-                    className="block px-4 py-2 text-sm"
+                    className="block py-2 text-sm"
                     role="menuitem"
                     tabIndex="-1"
                     id="user-menu-item-1"
@@ -172,7 +166,7 @@ export default function NavbarTop() {
                   </Link>
                   <Link
                     href="#"
-                    className="block px-4 py-2 text-sm"
+                    className="block py-2 text-sm"
                     role="menuitem"
                     tabIndex="-1"
                     id="user-menu-item-2"
