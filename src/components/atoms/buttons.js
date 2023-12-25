@@ -11,7 +11,7 @@ export function ButtonPrimary({
   return (
     <button
       type="button"
-      class="text-font bg-gradient-to-r from-primary-light via-primary-light to-primary hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-primary dark:focus:ring-primary-dark shadow-md shadow-primary/50 dark:shadow-md dark:shadow-primary-dark/80 font-medium rounded-md text-md px-5 py-2.5 text-center me-2 mb-2"
+      className="text-font bg-gradient-to-r from-primary-light via-primary-light to-primary hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-primary dark:focus:ring-primary-dark shadow-md shadow-primary/50 dark:shadow-md dark:shadow-primary-dark/80 font-medium rounded-md text-md px-5 py-2.5 text-center me-2 mb-2"
       onClick={onClick}
     >
       {label}

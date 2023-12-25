@@ -3,7 +3,7 @@ import { SVGfblogo, SVGiglogo, SVGxlogo } from "../atoms/svgs";
 export default function Footer({}) {
   //Render
   return (
-    <footer className="bg-backg-surface dark:bg-backg-dark-surface w-full">
+    <footer className="surface w-full">
       <div className="mx-auto max-w-screen-lg p-4 py-6 lg:py-8">
         <hr className="my-6 border-font-inactive sm:mx-auto lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between mx-4">
