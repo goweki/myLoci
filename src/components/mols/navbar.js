@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ButtonPrimary, ButtonUnbound } from "../atoms/buttons";
 import { SVGbell, SVGcog, SVGhambuger, SVGclose } from "../atoms/svgs";
@@ -29,11 +30,15 @@ export default function NavbarTop() {
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex flex-shrink-0 items-center">
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                alt="GOWEKI"
-              />
+              <Link href="/" className="group">
+                <Image
+                  src="https://i.postimg.cc/6p9RmbBf/goweki-IDillustrations-512.png"
+                  height={32}
+                  width={32}
+                  className="group-hover:scale-105"
+                  alt="GOWEKI"
+                />
+              </Link>
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">

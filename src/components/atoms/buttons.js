@@ -19,7 +19,7 @@ export function ButtonPrimary({
       hover:bg-gradient-to-br focus:ring-2 focus:outline-none focus:ring-primary dark:focus:ring-primary-dark font-medium rounded-md text-md ${
         !variant
           ? "border-transparent text-font-focus bg-gradient-to-r from-primary-light via-primary-light to-primary shadow-md shadow-primary/50 dark:shadow-md dark:shadow-primary-dark/80"
-          : "border-font dark:border-font-dark dark:from-primary-light dark:via-primary-light dark:to-primary hover:text-font-focus transition"
+          : "border-font dark:border-font-dark hover:text-font-focus transition hover:from-primary-light hover:via-primary-light hover:to-primary hover:border-transparent hover:shadow-md hover:dark:shadow-primary-dark/80"
       }  ${!noPadding ? "px-4 py-2" : "p-1"}`}
       onClick={onClick}
     >
