@@ -1,20 +1,23 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { SVGmoon, SVGsun } from "./svgs";
+import { SVGbell, SVGmoon, SVGsun } from "./svgs";
 
 export function ButtonPrimary({
-  label = "Button",
-  onClick = () => console.log("Primary button clicked"),
-  className = "",
+  label,
+  icon: Icon,
+  onClick = () => console.log("Default button click-action..."),
 }) {
+  // Render
   return (
     <button
       type="button"
-      className="text-font bg-gradient-to-r from-primary-light via-primary-light to-primary hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-primary dark:focus:ring-primary-dark shadow-md shadow-primary/50 dark:shadow-md dark:shadow-primary-dark/80 font-medium rounded-md text-md px-5 py-2.5 text-center me-2 mb-2"
+      className="flex flex-row space-x-2 text-font-focus bg-gradient-to-r from-primary-light via-primary-light to-primary hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-primary dark:focus:ring-primary-dark shadow-md shadow-primary/50 dark:shadow-md dark:shadow-primary-dark/80 font-medium rounded-md text-md px-5 py-2.5 text-center"
       onClick={onClick}
     >
-      {label}
+      <span className="sr-only">{`${label} button`}</span>
+      {Icon && <Icon />}
+      <span aria-hidden="true">{label && label}</span>
     </button>
   );
 }
