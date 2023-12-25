@@ -50,7 +50,7 @@
   color: red;
 } */
 a[aria-current] {
-  @apply text-primary-dark dark:text-primary-light;
+  @apply text-primary;
 }
 
 /* :root {
