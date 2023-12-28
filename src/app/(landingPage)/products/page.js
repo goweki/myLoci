@@ -1,285 +1,125 @@
 "use client";
-import { ButtonPrimary } from "@/components/atoms/buttons";
-import { SVGbell } from "@/components/atoms/svgs";
+import { useContext, useState, useEffect } from "react";
+import Link from "next/link";
+import { DataContext } from "@/app/providers";
+import { BouncyDots } from "@/components/mols/loading";
+import { SelectedProduct } from "./productPopup";
+import { CardMedium } from "@/components/mols/cards";
 
 export default function ProductsPage() {
-  return (
-    <main className="my-8">
-      <div className="container mx-auto px-6">
-        <div className="h-64 rounded-md overflow-hidden bg-cover bg-center bg-[url('https://images.unsplash.com/photo-1577655197620-704858b270ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=144')]">
-          <div className="bg-gray-900 bg-opacity-50 flex items-center h-full">
-            <div className="px-10 max-w-xl">
-              <h2 className="text-2xl text-white font-semibold">Sport Shoes</h2>
-              <p className="mt-2 text-gray-400">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Tempore facere provident molestias ipsam sint voluptatum
-                pariatur.
-              </p>
-              <button className="flex items-center mt-4 px-3 py-2 bg-blue-600 text-white text-sm uppercase font-medium rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                <span>Shop Now</span>
+  const data = useContext(DataContext);
+  const [products, setProducts] = useState("");
+  const [clickedItem, setClickedItem] = useState("");
+  const [searchPhrase, setSearchPhrase] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [UIstate, setUIstate] = useState("");
+  //onMount
+  useEffect(() => {
+    setUIstate("OK");
+  }, []);
+  // setProducts: onMount, onChange-searchPhrase, onChange-category
+  useEffect(() => {
+    let { products } = data;
+    setProducts(products);
+  }, [data]);
+  //Render
+  if (!UIstate) return <BouncyDots />;
+  else if (UIstate === "OK")
+    return (
+      <div className="py-8 max-w-screen-lg w-full px-3 md:px-6">
+        {/* HEADER */}
+        <div className="relative sm:rounded-lg">
+          <div className="flex flex-col items-center justify-center p-4 space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
+            {/* search FIELD */}
+            <div className="relative w-full sm:max-w-[50%] min-w-[120px]">
+              <label
+                htmlFor="searchPhrase"
+                className="hidden mb-2 text-sm font-medium "
+              >
+                Search
+              </label>
+              <div className="flex absolute inset-y-0 left-0 items-center pl-3">
                 <svg
-                  className="h-5 w-5 mx-2"
+                  xmlns="http://www.w3.org/2000/svg"
                   fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
                   viewBox="0 0 24 24"
+                  strokeWidth="1.5"
                   stroke="currentColor"
+                  className="w-5 h-5"
                 >
-                  <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                  />
                 </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="md:flex mt-8 md:-mx-4">
-          <div className="w-full h-64 md:mx-4 rounded-md overflow-hidden bg-cover bg-center md:w-1/2 bg-[url('https://images.unsplash.com/photo-1547949003-9792a18a2601?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80')]">
-            <div className="bg-gray-900 bg-opacity-50 flex items-center h-full">
-              <div className="px-10 max-w-xl">
-                <h2 className="text-2xl text-white font-semibold">Back Pack</h2>
-                <p className="mt-2 text-gray-400">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Tempore facere provident molestias ipsam sint voluptatum
-                  pariatur.
-                </p>
-                <button className="flex items-center mt-4 text-white text-sm uppercase font-medium rounded hover:underline focus:outline-none">
-                  <span>Shop Now</span>
-                  <svg
-                    className="h-5 w-5 mx-2"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                  </svg>
-                </button>
               </div>
+              <input
+                className="block p-2 pl-10 w-full border bg-backg-raised rounded-lg dark:bg-backg-dark-raised"
+                // className="rounded-lg w-full min-w-[240px] bg-backg-raised dark:bg-backg-dark-raised"
+                placeholder="Search products..."
+                type="searchPhrase"
+                id="searchPhrase"
+                value={searchPhrase}
+                onChange={(e) => {
+                  e.preventDefault();
+                  setSearchPhrase(e.target.value);
+                }}
+              />
             </div>
-          </div>
-          <div className="w-full h-64 mt-8 md:mx-4 rounded-md overflow-hidden bg-cover bg-center md:mt-0 md:w-1/2 bg-[url('https://images.unsplash.com/photo-1486401899868-0e435ed85128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80')]">
-            <div className="bg-gray-900 bg-opacity-50 flex items-center h-full">
-              <div className="px-10 max-w-xl">
-                <h2 className="text-2xl text-white font-semibold">Games</h2>
-                <p className="mt-2 text-gray-400">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Tempore facere provident molestias ipsam sint voluptatum
-                  pariatur.
-                </p>
-                <button className="flex items-center mt-4 text-white text-sm uppercase font-medium rounded hover:underline focus:outline-none">
-                  <span>Shop Now</span>
-                  <svg
-                    className="h-5 w-5 mx-2"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                  </svg>
-                </button>
+            {/* filter FIELDS */}
+            <div className="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 sm:w-auto sm:flex-row sm:space-y-0 sm:items-center sm:space-x-3">
+              <div className="flex items-center w-full space-x-3 md:w-auto">
+                <select
+                  name="category"
+                  className="flex w-full min-w-[120px] rounded-lg border pb-2 px-2 bg-backg-raised dark:bg-backg-dark-raised"
+                  onChange={(e) => {
+                    setCategoryFilter(e.target.value);
+                  }}
+                >
+                  <option value="" defaultValue className="italic py-2">
+                    category...
+                  </option>
+                  <option value="access-control">Access-control</option>
+                  <option value="camera">Cameras</option>
+                  <option value="fence">Fences</option>
+                </select>
+                {/* <select
+                  name="size"
+                  className="flex w-full min-w-[120px] rounded-lg border pb-2 px-2 bg-backg-raised dark:bg-backg-dark-raised"
+                >
+                  <option value="" defaultValue className="italic py-2">
+                    size...
+                  </option>
+                  <option>Large</option>
+                  <option>Medium</option>
+                  <option>Small</option>
+                </select> */}
               </div>
             </div>
           </div>
         </div>
-        <div className="mt-16">
-          <h3 className="text-gray-600 text-2xl font-medium">Fashions</h3>
-          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
-            <div className="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
-              <div className="flex items-end justify-end h-56 w-full bg-cover bg-[url('https://images.unsplash.com/photo-1563170351-be82bc888aa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=376&q=80')]">
-                <button className="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                  <svg
-                    className="h-5 w-5"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                  </svg>
-                </button>
-              </div>
-              <div className="px-5 py-3">
-                <h3 className="text-gray-700 uppercase">Chanel</h3>
-                <span className="text-gray-500 mt-2">$12</span>
-              </div>
-            </div>
-            <div className="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
-              <div className="flex items-end justify-end h-56 w-full bg-cover bg-[url('background-image: url('https://images.unsplash.com/photo-1544441893-675973e31985?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80')]">
-                <button className="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                  <svg
-                    className="h-5 w-5"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                  </svg>
-                </button>
-              </div>
-              <div className="px-5 py-3">
-                <h3 className="text-gray-700 uppercase">Man Mix</h3>
-                <span className="text-gray-500 mt-2">$12</span>
-              </div>
-            </div>
-            <div className="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
-              <div className="flex items-end justify-end h-56 w-full bg-cover bg-[url('https://images.unsplash.com/photo-1532667449560-72a95c8d381b?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80')]">
-                <button className="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                  <svg
-                    className="h-5 w-5"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                  </svg>
-                </button>
-              </div>
-              <div className="px-5 py-3">
-                <h3 className="text-gray-700 uppercase">Classic watch</h3>
-                <span className="text-gray-500 mt-2">$12</span>
-              </div>
-            </div>
-            <div className="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
-              <div className="flex items-end justify-end h-56 w-full bg-cover bg-[url('https://images.unsplash.com/photo-1590664863685-a99ef05e9f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=345&q=80')]">
-                <button className="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                  <svg
-                    className="h-5 w-5"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                  </svg>
-                </button>
-              </div>
-              <div className="px-5 py-3">
-                <h3 className="text-gray-700 uppercase">woman mix</h3>
-                <span className="text-gray-500 mt-2">$12</span>
-              </div>
-            </div>
+        {/* product Cards */}
+        {products && (
+          <div className="flex flex-wrap justify-center">
+            {products.map((v) => {
+              const { _id, ...product } = v;
+              return <CardMedium key={_id} product={product} />;
+            })}
           </div>
-        </div>
-        <div className="mt-16">
-          <h3 className="text-gray-600 text-2xl font-medium">Fashions</h3>
-          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
-            <div className="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
-              <div className="flex items-end justify-end h-56 w-full bg-cover bg-[url('https://images.unsplash.com/photo-1563170351-be82bc888aa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=376&q=80')]">
-                <button className="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                  <svg
-                    className="h-5 w-5"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                  </svg>
-                </button>
-              </div>
-              <div className="px-5 py-3">
-                <h3 className="text-gray-700 uppercase">Chanel</h3>
-                <span className="text-gray-500 mt-2">$12</span>
-              </div>
-            </div>
-            <div className="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
-              <div className="flex items-end justify-end h-56 w-full bg-cover bg-[url('https://images.unsplash.com/photo-1544441893-675973e31985?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80')]">
-                <button className="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                  <svg
-                    className="h-5 w-5"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                  </svg>
-                </button>
-              </div>
-              <div className="px-5 py-3">
-                <h3 className="text-gray-700 uppercase">Man Mix</h3>
-                <span className="text-gray-500 mt-2">$12</span>
-              </div>
-            </div>
-            <div className="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
-              <div className="flex items-end justify-end h-56 w-full bg-cover bg-[url('https://images.unsplash.com/photo-1532667449560-72a95c8d381b?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80')]">
-                <button className="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                  <svg
-                    className="h-5 w-5"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                  </svg>
-                </button>
-              </div>
-              <div className="px-5 py-3">
-                <h3 className="text-gray-700 uppercase">Classic watch</h3>
-                <span className="text-gray-500 mt-2">$12</span>
-              </div>
-            </div>
-            <div className="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
-              <div className="flex items-end justify-end h-56 w-full bg-cover bg-[url('https://images.unsplash.com/photo-1590664863685-a99ef05e9f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=345&q=80')]">
-                <button className="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                  <svg
-                    className="h-5 w-5"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                  </svg>
-                </button>
-              </div>
-              <div className="px-5 py-3">
-                <h3 className="text-gray-700 uppercase">woman mix</h3>
-                <span className="text-gray-500 mt-2">$12</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        )}
+        {clickedItem && (
+          <SelectedProduct
+            handleClose={() => setClickedItem("")}
+            car={clickedItem}
+          />
+        )}
       </div>
-    </main>
-  );
+    );
+  else
+    return (
+      <>
+        ERROR: Please <Link href="/">Click here</Link> to go back to homepage
+      </>
+    );
 }
-
-// export default function ProductsPage() {
-//   return (
-//     <div className="[&>*:not(:last-child)]:mb-2">
-//       <ButtonPrimary label="Notifications" icon={SVGbell} />
-//       <ButtonPrimary label="Notifications" icon={SVGbell} variant />
-//       <ButtonPrimary label="Notifications" icon={SVGbell} noPadding />
-//       <ButtonPrimary label="Notifications" icon={SVGbell} noPadding variant />
-//       <ButtonPrimary icon={SVGbell} />
-//       <ButtonPrimary icon={SVGbell} variant />
-//       <ButtonPrimary icon={SVGbell} noPadding />
-//       <ButtonPrimary icon={SVGbell} noPadding variant />
-//     </div>
-//   );
-// }

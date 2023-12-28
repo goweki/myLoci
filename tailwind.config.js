@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-const colors = require("tailwindcss/colors");
 
 const customColours = {
   primary: {
@@ -60,6 +59,17 @@ module.exports = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      // animation: {
+      //   loader: "loader 0.6s infinite alternate",
+      // },
+      keyframes: {
+        loader: {
+          to: {
+            opacity: 0.1,
+            transform: "translate3d(0, -0.5rem, 0)",
+          },
+        },
       },
     },
     plugins: [],

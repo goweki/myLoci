@@ -13,7 +13,7 @@ export default function NavbarTop() {
   return (
     <nav className="surface backdrop-blur-xl sticky top-0 w-full border-b p-2 lg:p-4 z-24">
       {/* border-b border-backg-raised bg-gradient-to-b from-backg-surface to-backg-surface/50 pb-6 pt-8 backdrop-blur-lg dark:border-backg-dark-raised dark:from-backg-dark-surface dark:to-backg-dark-surface/50 lg:static lg:w-auto lg:rounded-lg lg:border lg:bg-backg-surface lg:p-4 lg:dark:bg-backg-dark-surface/30 */}
-      <div className="mx-auto max-w-screen-lg px-2 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             {/* Mobile hamburger-menu button */}

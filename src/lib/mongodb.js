@@ -26,4 +26,11 @@ if (process.env.NODE_ENV === "development") {
 
 // Export a module-scoped MongoClient promise. By doing this in a
 // separate module, the client can be shared across functions.
-export default clientPromise;
+// export default clientPromise;
+
+// target COLLECTION
+const clientResolved = await clientPromise;
+const db_cluster = clientResolved.db(process.env.ATLAS_DB);
+// Export a module-scoped database-object. By doing this in a
+// separate module, the object can be shared across functions.
+export default db_cluster;
