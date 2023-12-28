@@ -5,6 +5,8 @@ import { DataContext } from "@/app/providers";
 import { BouncyDots } from "@/components/mols/loading";
 import { SelectedProduct } from "./productPopup";
 import { CardMedium } from "@/components/mols/cards";
+import InputField from "@/components/atoms/inputs";
+import { SVGbell } from "@/components/atoms/svgs";
 
 export default function ProductsPage() {
   const data = useContext(DataContext);
@@ -32,7 +34,7 @@ export default function ProductsPage() {
           <div className="flex flex-col items-center justify-center p-4 space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
             {/* search FIELD */}
             <div className="relative w-full sm:max-w-[50%] min-w-[120px]">
-              <label
+              {/* <label
                 htmlFor="searchPhrase"
                 className="hidden mb-2 text-sm font-medium "
               >
@@ -65,7 +67,8 @@ export default function ProductsPage() {
                   e.preventDefault();
                   setSearchPhrase(e.target.value);
                 }}
-              />
+              /> */}
+              <InputField label="search" icon={SVGbell} noLabel />
             </div>
             {/* filter FIELDS */}
             <div className="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 sm:w-auto sm:flex-row sm:space-y-0 sm:items-center sm:space-x-3">
