@@ -1,17 +1,26 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ButtonPrimary, ButtonUnbound } from "../atoms/buttons";
-import { SVGbell, SVGcog, SVGhambuger, SVGclose } from "../atoms/svgs";
+import {
+  SVGbell,
+  SVGcog,
+  SVGhambuger,
+  SVGclose,
+  SVGsun,
+  SVGmoon,
+} from "../atoms/svgs";
 
 export default function NavbarTop() {
+  const { theme, setTheme } = useTheme();
   const pathname = usePathname();
   const [openMenu, setOpenMenu] = useState(""); //mobile-menu,notifications,profile
   //Render
   return (
-    <nav className="surface backdrop-blur-xl sticky top-0 w-full border-b p-2 lg:p-4 z-24">
+    <nav className="surface backdrop-blur-xl sticky top-0 w-full border-b p-2 lg:p-4 z-100">
       {/* border-b border-backg-raised bg-gradient-to-b from-backg-surface to-backg-surface/50 pb-6 pt-8 backdrop-blur-lg dark:border-backg-dark-raised dark:from-backg-dark-surface dark:to-backg-dark-surface/50 lg:static lg:w-auto lg:rounded-lg lg:border lg:bg-backg-surface lg:p-4 lg:dark:bg-backg-dark-surface/30 */}
       <div className="mx-auto max-w-screen-xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
@@ -102,11 +111,19 @@ export default function NavbarTop() {
               </svg>
             </button> */}
             <ButtonUnbound
-              // icon={SVGbell}
               icon={SVGbell}
               label="Notifications"
               noPadding
               noText
+            />
+            <ButtonUnbound
+              icon={theme === "dark" ? SVGsun : SVGmoon}
+              label="Notifications"
+              noPadding
+              noText
+              onClick={() => {
+                theme === "light" ? setTheme("dark") : setTheme("light");
+              }}
             />
             {/* Profile dropdown */}
             <div className="relative ml-3">
@@ -140,7 +157,7 @@ export default function NavbarTop() {
 
               {openMenu === "settings" && (
                 <div
-                  className="absolute surface right-0 z-10 mt-2 w-36 origin-top-right py-1 bg-primary-dark"
+                  className="absolute surface right-0 z-24 mt-2 w-36 origin-top-right py-1 bg-primary-dark"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="user-menu-button"
@@ -160,7 +177,7 @@ export default function NavbarTop() {
                     className="block py-2 text-sm"
                     role="menuitem"
                     tabIndex="-1"
-                    id="user-menu-item-1"
+                    id="toggle-theme-menu-item"
                   >
                     Settings
                   </Link>
@@ -169,7 +186,7 @@ export default function NavbarTop() {
                     className="block py-2 text-sm"
                     role="menuitem"
                     tabIndex="-1"
-                    id="user-menu-item-2"
+                    id="signout-menu-item"
                   >
                     Sign out
                   </Link>

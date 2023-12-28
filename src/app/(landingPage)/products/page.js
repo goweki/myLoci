@@ -28,7 +28,8 @@ export default function ProductsPage() {
   if (!UIstate) return <BouncyDots />;
   else if (UIstate === "OK")
     return (
-      <div className="py-8 max-w-screen-lg w-full px-3 md:px-6">
+      <div className="container px-6 max-w-screen-xl">
+        {/* <div className="py-8 max-w-screen-xl w-full px-3 md:px-6"> */}
         {/* HEADER */}
         <div className="relative sm:rounded-lg">
           <div className="flex flex-col items-center justify-center p-4 space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">

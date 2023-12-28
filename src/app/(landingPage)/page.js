@@ -4,7 +4,7 @@ import { CardLarge } from "@/components/mols/cards";
 
 export default function LandingPage() {
   return (
-    <div className="container px-6 max-w-screen-xl">
+    <div className="container max-w-screen-xl px-3 py-6 md:px-4 md:py-8">
       <CardLarge />
       <div className="md:flex mt-8 md:-mx-4">
         <div className="w-full h-64 md:mx-4 rounded-md overflow-hidden bg-cover bg-center md:w-1/2 bg-[url('https://images.unsplash.com/photo-1547949003-9792a18a2601?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80')]">
